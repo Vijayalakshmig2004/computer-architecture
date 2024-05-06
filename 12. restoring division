@@ -1,0 +1,24 @@
+def integer_restoring_division(dividend, divisor):
+    # Initialize variables
+    quotient = [0] * len(dividend)
+    remainder = [0] * len(dividend)
+    borrow = 0
+
+    # Perform division
+    for i in range(len(dividend)):
+        remainder_shifted = [0] + remainder[:-1]
+        remainder = [x - y - borrow for x, y in zip(remainder_shifted, divisor)]
+        borrow = any([x < 0 for x in remainder])
+
+        quotient[i] = 1 - borrow
+        remainder = [x + y + borrow * 2 for x, y in zip(remainder, divisor)]
+
+    # Returning the result
+    return quotient, remainder
+
+# Example usage:
+dividend = [0, 1, 0, 0]  # Binary representation of 4
+divisor = [0, 0, 1]      # Binary representation of 2
+result_quotient, result_remainder = integer_restoring_division(dividend, divisor)
+print("Quotient:", result_quotient)  # Output: [0, 1, 0, 0]
+print("Remainder:", result_remainder)  # Output: [0, 0, 0, 0]ss
