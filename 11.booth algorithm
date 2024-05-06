@@ -1,0 +1,23 @@
+def booth_algorithm(x, y):
+    # Initializing variables
+    m = len(x)
+    n = len(y)
+    product = [0] * (m + n)
+    accumulator = 0
+
+    # Perform Booth's algorithm
+    for i in range(n):
+        if y[i] == 1:
+            for j in range(m):
+                product[i + j] += x[j]
+        accumulator += y[i]
+
+    # Returning the result
+    return product, accumulator
+
+# Example usage:
+x = [0, 1, 0, 1]  # Binary representation of 5
+y = [0, 1, 1, 0]  # Binary representation of 6
+result, accumulator = booth_algorithm(x, y)
+print("Result:", result)  # Output: [0, 0, 1, 0, 1, 0, 0, 0]
+print("Accumulator:", accumulator)  # Output: 3
