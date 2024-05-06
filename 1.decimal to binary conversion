@@ -1,0 +1,6 @@
+def decimal_to_binary(decimal):
+                          return bin(decimal)[2:]
+ # Decimal to Binary
+decimal_number = 10
+binary_number = decimal_to_binary(decimal_number)
+print("Binary:", binary_number)
